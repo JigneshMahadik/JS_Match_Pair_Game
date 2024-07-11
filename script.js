@@ -1,7 +1,8 @@
 // Initialize card values
 const cardValues = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F", "G", "G", "H", "H"];
 
-var attempts = 0;
+let attempts = document.getElementById("attempts");
+var attempts_count = 0;
 
 // Shuffle the card values
 function shuffle(array) {
@@ -49,6 +50,9 @@ function flipCard() {
         secondCard = this;
         checkForMatch();
     }
+    
+    attempts_count++;
+    attempts.innerHTML = attempts_count;
 }
 
 
@@ -96,6 +100,7 @@ function resetBoard() {
 document.querySelectorAll('.card')
 .forEach((card) => {
     card.addEventListener('click', flipCard)
+    attempts.innerHTML = attempts_count;
 });
 
 
@@ -111,4 +116,6 @@ document.getElementById('resetButton').addEventListener('click', () => {
         gameBoard.appendChild(card);
     });
     document.querySelectorAll('.card').forEach(card => card.addEventListener('click', flipCard));
+    attempts_count = 0;
+    attempts.innerHTML = attempts_count;
 });
